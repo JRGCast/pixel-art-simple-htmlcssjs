@@ -73,10 +73,16 @@ selectColor();
 // Função para pintar os pixels (por algum motivo também pinta o #pixel-board):
 function pintaCor() {
   const quadroPixel = document.getElementById('pixel-board');
-  quadroPixel.addEventListener('click', function () {
+  const mouseOver = () => {
     const selectedColor = document.querySelector('.selected').style
       .backgroundColor || document.querySelector('.selected').value;
     if (event.target.className === "pixel") event.target.style.backgroundColor = selectedColor;
+  };
+  quadroPixel.addEventListener('mousedown', function () {
+    quadroPixel.addEventListener('mouseover', mouseOver);
+  });
+  quadroPixel.addEventListener('mouseup', function () {
+    quadroPixel.removeEventListener('mouseover', mouseOver);
   });
 }
 pintaCor();
