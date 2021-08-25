@@ -23,11 +23,16 @@ function paletaCores() {
     quadradosCores.style.backgroundColor = coresFundo[i];
     palette.appendChild(quadradosCores);
   }
-  // const personalColor = document.createElement('input');
-  // personalColor.className = 'color';
-  // personalColor.setAttribute('type', 'color');
-  // personalColor.setAttribute('id', 'personal-color');
-  // palette.appendChild(personalColor);
+  const personalColor = document.createElement('input');
+  personalColor.className = 'color';
+  personalColor.setAttribute('type', 'color');
+  personalColor.setAttribute('id', 'personal-color');
+  palette.appendChild(personalColor);
+  const labelForPC = document.createElement("LABEL");
+  const textForLabel = document.createTextNode("Ou escolha uma cor:");
+  labelForPC.setAttribute("for", "personal-color");
+  labelForPC.appendChild(textForLabel);
+  palette.insertBefore(labelForPC, personalColor);
 }
 paletaCores();
 
@@ -58,7 +63,7 @@ function selectColor() {
       if (quadros[i] === event.target) {
         event.target.className = 'color selected';
       } else {
-        quadros[i].className = 'color';
+        quadros[i].tagName === 'LABEL' ? quadros[i].className = 'none' : quadros[i].className = 'color';
       }
     }
   });
@@ -70,7 +75,7 @@ function pintaCor() {
   const quadroPixel = document.getElementById('pixel-board');
   quadroPixel.addEventListener('click', function () {
     const selectedColor = document.querySelector('.selected').style
-      .backgroundColor;
+      .backgroundColor || document.querySelector('.selected').value;
     if (event.target.className === "pixel") event.target.style.backgroundColor = selectedColor;
   });
 }

@@ -21,7 +21,8 @@
 .tamanho-quadro-container {
   background-color: antiquewhite;
   border: 3px solid grey;
-  display: inline-block;
+  display: flex;
+  flex-flow: row nowrap;
   font-size: 25px;
   width: fit-content;
 }
