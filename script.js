@@ -51,7 +51,7 @@ function quadroPixels(num) { // Mudei a declaração de variável para virar par
     }
   }
 }
-quadroPixels(5);
+quadroPixels(6);
 
 // Função selecionar cor e mudar a classe da li da color-palette:
 function selectColor() {
