@@ -3,7 +3,10 @@
 }
 
 .paleta-cores-container {
+  display: flex;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .color {
@@ -62,7 +65,7 @@
 .pixel {
   background-color: white;
   border: 1px solid black;
-  display: inline-block;
+  display: table-cell;
   height: 40px;
   position: relative;
   width: 40px;

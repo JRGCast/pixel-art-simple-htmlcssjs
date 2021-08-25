@@ -23,6 +23,11 @@ function paletaCores() {
     quadradosCores.style.backgroundColor = coresFundo[i];
     palette.appendChild(quadradosCores);
   }
+  // const personalColor = document.createElement('input');
+  // personalColor.className = 'color';
+  // personalColor.setAttribute('type', 'color');
+  // personalColor.setAttribute('id', 'personal-color');
+  // palette.appendChild(personalColor);
 }
 paletaCores();
 
@@ -66,7 +71,7 @@ function pintaCor() {
   quadroPixel.addEventListener('click', function () {
     const selectedColor = document.querySelector('.selected').style
       .backgroundColor;
-    event.target.style.backgroundColor = selectedColor;
+    if (event.target.className === "pixel") event.target.style.backgroundColor = selectedColor;
   });
 }
 pintaCor();
@@ -111,7 +116,7 @@ function inputedValueCheck() {
     if (inputedValue >= 5 || inputedValue <= 50) {
       correctValue = inputedValue;
       const quadro = document.getElementById('pixel-board');
-      quadro.innerHTML = ''; // Ideia vista no projeto do Massaki, que remete ao projeto da Bianca Caetano (genial!)
+      quadro.innerHTML = '';
       quadroPixels(correctValue);
     }
   });
