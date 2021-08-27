@@ -27,6 +27,10 @@
   width: fit-content;
 }
 
+.tamanho-quadro-container label {
+  padding: 10px;
+}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -64,6 +68,10 @@
 }
 
 .quadro-pixels {
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center;
   height: 240px;
   line-height: 0;
   width: 240px;
@@ -72,7 +80,6 @@
 .pixel {
   background-color: white;
   border: 1px solid black;
-  display: table-cell;
   height: 40px;
   position: relative;
   width: 40px;

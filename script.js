@@ -73,16 +73,27 @@ selectColor();
 // Função para pintar os pixels (por algum motivo também pinta o #pixel-board):
 function pintaCor() {
   const quadroPixel = document.getElementById('pixel-board');
-  const mouseOver = () => {
+  const toggleMsg = document.getElementById('toggle-painting');
+  const paint = () => {
     const selectedColor = document.querySelector('.selected').style
       .backgroundColor || document.querySelector('.selected').value;
     if (event.target.className === "pixel") event.target.style.backgroundColor = selectedColor;
   };
-  quadroPixel.addEventListener('mousedown', function () {
-    quadroPixel.addEventListener('mouseover', mouseOver);
-  });
-  quadroPixel.addEventListener('mouseup', function () {
-    quadroPixel.removeEventListener('mouseover', mouseOver);
+  quadroPixel.addEventListener('click', paint);
+  quadroPixel.addEventListener('dblclick', function () {
+    const verify = quadroPixel.getAttribute('holding');
+    console.log(`Verify é ${verify}`);
+    if (verify === null || verify === "not holding") {
+      quadroPixel.setAttribute('holding', "is holding");
+      quadroPixel.addEventListener('mouseover', paint);
+      toggleMsg.innerText = 'Ativada';
+      toggleMsg.style.color = 'green';
+    } else {
+      quadroPixel.setAttribute('holding', "not holding");
+      toggleMsg.innerText = 'Desativada';
+      toggleMsg.style.color = 'red';
+      quadroPixel.removeEventListener('mouseover', paint);
+    }
   });
 }
 pintaCor();
@@ -111,8 +122,7 @@ limpeza();
 
 // Função para checar e criar novo board (ainda falta entender como apagar o board antigo):
 function inputedValueCheck() {
-  const btnGen = document.getElementById('generate-board');
-  btnGen.addEventListener('click', function () {
+  const verifyInput = () => {
     let inputedValue = document.getElementById('board-size').value;
     let correctValue;
     if (inputedValue === '') {
@@ -130,6 +140,14 @@ function inputedValueCheck() {
       quadro.innerHTML = '';
       quadroPixels(correctValue);
     }
+  };
+  const btnGen = document.getElementById('generate-board');
+  const inputValue = document.getElementById('board-size');
+  btnGen.addEventListener('click', verifyInput);
+  inputValue.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") verifyInput();
+    console.log(e.key);
   });
+
 }
 inputedValueCheck();
